@@ -37,13 +37,24 @@ async function run() {
       res.send(result);
     });
 
+    // selectedClassess Collection apis
+    app.get("/selectedclass", async (req, res) => {
+      const email = req.query.email;
+      console.log(email);
+      if (!email) {
+        res.send([]);
+      }
+      const query = { email: email };
+      const result = await selectedClassessCollection.find(query).toArray();
+    });
+
     // selectedClassess Collection
-    app.post("/selectedclass", async(req,res)=>{
+    app.post("/selectedclass", async (req, res) => {
       const item = req.body;
       console.log(item);
-      console.log(result) = await selectedClassessCollection.insertOne(item);
+      result = await selectedClassessCollection.insertOne(item);
       res.send(result);
-    })
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

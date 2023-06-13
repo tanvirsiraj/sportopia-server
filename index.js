@@ -27,6 +27,9 @@ async function run() {
     await client.connect();
 
     const sportsCollection = client.db("sportopiaDb").collection("sports");
+    const selectedClassessCollection = client
+      .db("sportopiaDb")
+      .collection("selectedClassess");
 
     // loading sports data from mongodb
     app.get("/sports", async (req, res) => {

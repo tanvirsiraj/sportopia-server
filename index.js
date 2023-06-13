@@ -46,6 +46,7 @@ async function run() {
       }
       const query = { email: email };
       const result = await selectedClassessCollection.find(query).toArray();
+      res.send(result);
     });
 
     // selectedClassess Collection

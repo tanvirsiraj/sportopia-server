@@ -35,6 +35,14 @@ async function run() {
     const selectedClassessCollection = client
       .db("sportopiaDb")
       .collection("selectedClassess");
+    const usersCollection = client.db("sportopiaDb").collection("users");
+
+    // users related apis
+    app.post("/users", async (req, res) => {
+      const user = req.body;
+      const result = await usersCollection.insertOne(user);
+      res.send(result);
+    });
 
     // loading sports data from mongodb
     app.get("/sports", async (req, res) => {
